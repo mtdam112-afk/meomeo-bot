@@ -1,34 +1,24 @@
 import os
+import requests
 from flask import Flask, request
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
-import asyncio
-
 TOKEN = os.environ.get("BOT_TOKEN")
 app = Flask(__name__)
-
-# Tạo application Telegram
-application = Application.builder().token(TOKEN).build()
-
-async def start(update: Update, context):
-    await update.message.reply_text("Meo meo bot sống rồi nè!")
-
-async def echo(update: Update, context):
-    await update.message.reply_text(f"Bạn nói: {update.message.text}")
-
-application.add_handler(CommandHandler("start", start))
-application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
-
+def send_message(chat_id, text):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    requests.post(url, json={"chat_id": chat_id, "text": text})
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    # Nhận tin nhắn từ Telegram
-    update = Update.de_json(request.get_json(force=True), application.bot)
-    asyncio.run(application.process_update(update))
+    data = request.get_json()
+    if "message" in data:
+        chat_id = data["message"]["chat"]["id"]
+        text = data["message"].get("text", "")
+        if text == "/start":
+            send_message(chat_id, "Meo meo bot song roi ne! 🐱")
+        else:
+            send_message(chat_id, f"Ban noi: {text}")
     return "ok"
-
 @app.route("/")
 def home():
     return "Bot is running!"
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
