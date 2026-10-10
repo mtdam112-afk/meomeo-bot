@@ -1,5 +1,4 @@
-import os
-import requests
+import os, requests
 from flask import Flask, request
 TOKEN = os.environ.get("BOT_TOKEN")
 app = Flask(__name__)
@@ -14,12 +13,10 @@ def webhook():
     if "message" in data:
         chat_id = data["message"]["chat"]["id"]
         text = data["message"].get("text", "")
-        if text == "/start":
+        
+        # Fix: nhận /start dù có thêm mã đằng sau
+        if text.startswith("/start"):
             send_message(chat_id, "Gì? Tao đang tắm! Có gì sủa lẹ lên! 🐱💢")
-        elif "ai" in text.lower():
-            send_message(chat_id, "Tao là trùm cuối, hỏi lắm vcl!")
-        elif "ngu" in text.lower():
-            send_message(chat_id, "Mày mới ngu ấy, tao khôn vcl ra!")
         else:
             send_message(chat_id, f"Nói gì đấy? Nói lại bố mày nghe xem: {text} 😏")
     return "ok"
