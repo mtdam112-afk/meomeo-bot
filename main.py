@@ -8,52 +8,46 @@ def send_message(chat_id, text):
     requests.post(url, json={"chat_id": chat_id, "text": text})
 
 START_REPLIES = [
-    "Gì? Tao đang tắm! Có gì sủa lẹ lên! 🐱💢",
-    "Ủa alo? Đang bận đếm lông mèo! 😏",
-    "Sủa đi, bố mày nghe đây!",
-    "Lại là mày à? Nhớ tao đến thế à? 😌",
-    "Tổng đài MeoMeo xin nghe, mày là đứa thứ 100 gọi hôm nay! 📞",
-    "Nói nhanh tao còn đi ngủ, buồn ngủ vcl! 😴",
-    "Gọi gì? Có tiền không mà gọi? 💸",
-    "Vào việc luôn đi, đừng lòng vòng như Hải Phòng! 🤣",
-    "Tao đang ỉa, có gì nói nhanh! 💩",
-    "Alo? Mày nói gì tao không nghe, nói to lên!",
-    "Gì? Mày định rủ tao đi nhậu à? Chốt! 🍻",
-    "Đang bận làm đẹp, có gì mai nói! 💅",
-    "Mày là ai? Tao không nhớ! Não cá vàng lắm! 🐟",
-    "Ơi? Tao đây! Mày đâu? Lạc à?",
-    "Thích tao à mà /start hoài vậy? 😏",
-    "Bận lắm, nhưng vì mày đẹp trai/xinh gái nên tao rep đó! 😎",
-    "Gọi tao có gì không đại ca? 🫡",
-    "Tao đến rồi đây, có quà không? 🎁",
-    "Đang load... 99%... Ok nói đi!",
-    "Mày gõ /start làm tao giật mình, đang mơ thấy mày đó! 😳",
-    "Dạ em nghe! Anh cần gì ạ? (giả vờ ngoan 5s) 😇",
-    "Trùm KYC Minh Tuấn đây, cần gì nói! 💼",
-    "Tao đang ngồi trên ngai vàng, tâu đi! 👑",
-    "Nhanh, wifi chùa sắp hết giờ! 📶",
-    "Gọi lắm thế, tính làm phiền tao à? Yêu à? 😜"
+    "Khu này là của tao! Vào phải /start chào đại ca đàng hoàng chứ! 😎",
+    "Mày biết bố mày là ai không? Là đệ của Minh Tuấn! 🫡",
+    "Alo? Đại ca Minh Tuấn đang bận đếm tiền, có gì nói với đàn em tao đây! 💸",
+    "Vào địa bàn tao mà không chào à? Láo nháo tao cho ra đảo giờ! 🏝️",
+    "Mày là thằng nào? Khai mau! Tên tuổi, địa chỉ, số Tele! 😤",
+    "Chào đại ca! Em mới vào nghề, có gì đại ca chỉ bảo! 🙏",
+    "Đứng lại! Muốn qua phải nộp phí! Phí là 1 câu nịnh! 😆",
+    "Tao là trùm khu này! Muốn làm ăn thì phải qua tao! - Minh Tuấn said! 👑",
+    "Mày nhìn gì? Nhìn đểu à? /start lại cho tử tế coi! 👀",
+    "Giang hồ mõm đây! Đụng là chạm, chạm là... chạy! 🏃‍♂️",
+    "Đại ca tao là @mih_tun, còn tao là đệ cứng! Có gì nói! 🔪 (dao nhựa)",
+    "Mày có biết luật giang hồ không? Luật là phải lễ phép với tao! 😌",
+    "Khu Thái Nguyên này tao bảo kê! Muốn yên ổn thì chào tao 1 tiếng! 😏",
+    "Mày mới vào nghề à? Non lắm em ơi! Đi theo anh! 😎",
+    "Tao đang ngồi uống trà đá với các anh lớn, có gì nói nhanh! 🍵",
+    "Nghe danh Minh Tuấn chưa? Chưa thì giờ biết rồi đó! 🔥",
+    "Mày thích gây sự à? Tao gọi 500 anh em đến giờ! (trong game) 🎮",
+    "Bố mày nhịn lâu lắm rồi đấy nhé! Nói nhanh trước khi bố mày đổi ý! 💢",
+    "Vào đây phải ngoan! Đại ca thương! Hư là đại ca... block! 🚫",
+    "Mày là gà hay là thóc? Gà thì tao thịt, thóc thì tao nhặt! 🐔",
+    "Đừng để tao nóng! Tao nóng lên là tao... bật điều hòa! ❄️",
+    "Trông mặt mày uy tín đấy! Theo đại ca Minh Tuấn làm KYC đi! 💼",
+    "Nói ít, làm nhiều! Giang hồ là phải thế! Vào việc! 🤝",
+    "Mày có số má gì không? Không thì đi theo tao cho có số! 🔢",
+    "Tao là dân chơi hệ hiền! Động vào tao là tao... méc đại ca! 😂"
 ]
 
 OTHER_REPLIES = [
-    "Nói gì đấy? Nói lại bố mày nghe xem: {text} 😏",
-    "Mày nói tiếng người đi, tao chưa học tiếng ngoài hành tinh! 👽",
-    "Ghi lại rồi, mai tao méc mẹ mày! 😂",
-    "Mạng lag quá, mày nói lại coi! 📶",
-    "Ok tao giả vờ hiểu rồi đó, nói tiếp đi! 🤓",
-    "Thôi mày im đi, nói câu nào ngáo câu đó! 😜",
-    "Câu này hay đấy, để tao đăng Facebook! 📝",
-    "Mày vừa nói gì? {text} á? Tao không quan tâm lắm! 😑",
-    "Ủa {text} là gì? Ăn được không? 🍜",
-    "Tao nghe rồi, nhưng tao kệ! 😌",
-    "Nói hay lắm, vỗ tay! 👏👏👏",
-    "Văn mẫu à? Copy ở đâu đấy? 😆",
-    "Thôi đừng xạo nữa, tao biết hết rồi!",
-    "Mày nói nữa là tao yêu mày luôn đó! ❤️",
-    "Im lặng là vàng, mày nói là kim cương giả! 💎",
-    "Tao đang ghi âm lại để làm bằng chứng! 🎤",
-    "Nói ít thôi, nói nhiều đau họng! 🫢",
-    "Tao off đây, mày tự chơi 1 mình đi! 🎮"
+    "Mày nói {text} là có ý gì? Cà khịa tao à? 😤",
+    "Câu {text} này nghe ngứa tai nhỉ? Muốn va không? 😏",
+    "Mày nói linh tinh gì đấy? Nói lại tao nghe cho rõ! 👂",
+    "Thằng này láo! Dám nói {text} với đại ca à? 😠",
+    "Được, câu {text} này tao ghim! Mai tính! 📌",
+    "Mày đang thử lòng tao đấy à? {text} á? Non! 😌",
+    "Nói câu {text} xong rồi chuồn à? Đứng lại! 😆",
+    "Mày nói {text} là ý gì? Muốn vào băng tao à? Ok duyệt! ✅",
+    "Giang hồ không nói nhiều! Nói {text} là phải làm! Làm đi! 💪",
+    "Câu này được đấy! Đại ca Minh Tuấn sẽ thích thằng như mày! 😎",
+    "Mày nói {text} nghe cũng máu đấy! Theo tao! 🔥",
+    "Thôi bớt xạo đi! Nói {text} ai tin? 😂"
 ]
 
 @app.route("/webhook", methods=["POST"])
@@ -64,16 +58,14 @@ def webhook():
         text = data["message"].get("text", "")
         if text.startswith("/start"):
             send_message(chat_id, random.choice(START_REPLIES))
-        elif text.strip() == "":
-            send_message(chat_id, "Gửi gì trống trơn vậy ba? 🤔")
         else:
-            template = random.choice(OTHER_REPLIES)
-            send_message(chat_id, template.format(text=text))
+            t = random.choice(OTHER_REPLIES)
+            send_message(chat_id, t.format(text=text))
     return "ok"
 
 @app.route("/")
 def home():
-    return "Bot is running!"
+    return "Bot giang ho cua Minh Tuan is running!"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
