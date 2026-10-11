@@ -85,21 +85,19 @@ OTHER_REPLIES = [
 def webhook():
     data = request.get_json()
     if "message" in data:
-        chat" in data:
-            chat_id = data["message"]["chat"]["id"]
-            text = data["message"].get("text", "")
-            if text.startswith("/start"):
-                send_message(chat_id, random.choice(START_REPLIES))
+        chat_id = data["message"]["chat"]["id"]
+        text = data["message"].get("text", "")
+        if text.startswith("/start"):
+            send_message(chat_id, random.choice(START_REPLIES))
+        else:
+            if not text.strip():
+                send_message(chat_id, "Mày gửi gì trống trơn vậy? Muốn Minh Tuấn block à? 🚫")
             else:
-                if not text.strip():
-                    send_message(chat_id, "Mày gửi gì trống trơn vậy? Muốn Minh Tuấn block à? 🚫")
-                else:
-                    send_message(chat_id, random.choice(OTHER_REPLIES).format(text=text))
+                send_message(chat_id, random.choice(OTHER_REPLIES).format(text=text))
     return "ok"
 
 @app.route("/")
 def home():
-    return "home():
     return "Bot cua Minh Tuan is running!"
 
 if __name__ == "__main__":
